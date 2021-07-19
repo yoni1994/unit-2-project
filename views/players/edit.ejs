@@ -1,0 +1,39 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Edit your player:</h1>
+  <form action="/players/<%= player._id %>?_method=PUT" method="POST">
+    <label>
+      Name: 
+      <input 
+        type="text"
+        name="name" 
+        value="<%= player.name %>" 
+        autocomplete="off"
+      >
+    </label>
+    <label>
+      Height: 
+      <input 
+        type="text"
+        name="height" 
+        value="<%= player.height %>" 
+        autocomplete="off"
+      >
+    </label>
+    <label>
+        Position:
+        <select name="position">
+            <option value="PG" <%= player.position == 'PG' ? 'selected' : '' %>>PG</option>
+            <option value="SG" <%= player.position == 'SG' ? 'selected' : '' %>>SG</option>
+            <option value="SF" <%= player.position == 'SF' ? 'selected' : '' %>>SF</option>
+            <option value="PF" <%= player.position == 'PF' ? 'selected' : '' %>>PF</option>
+            <option value="C" <%= player.position == 'C' ? 'selected' : '' %>>C</option>
+        </select>
+    </label>
+    <button type="submit">Edit your player</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

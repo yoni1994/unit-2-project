@@ -1,0 +1,20 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Edit your team:</h1>
+  <form action="/teams/<%= team._id %>?_method=PUT" method="POST">
+    <label>
+      Name: 
+      <input 
+        type="text"
+        name="name" 
+        value="<%= team.name %>" 
+        autocomplete="off"
+      >
+    </label>
+    <button type="submit">Edit your team</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

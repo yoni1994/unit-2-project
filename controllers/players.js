@@ -4,7 +4,8 @@ export {
   index,
   create,
   show,
-  edit
+  edit,
+  update
 }
 
 function index(req, res) {
@@ -59,5 +60,24 @@ function edit(req, res) {
     .catch(err => {
       console.log(err)
       res.redirect('/players')
+    })
+}
+
+function update(req, res) {
+    Player.findById(req.params.id)
+    .then(player => {
+      if (player.profile.equals(req.user.profile._id)) {
+        req.body.tasty = !!req.body.tasty
+        player.update(req.body, {new: true})
+        .then(()=> {
+          res.redirect(`/players/${player._id}`)
+        })
+      } else {
+        throw new Error ('🚫 Not authorized 🚫')
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect(`/players`)
     })
 }

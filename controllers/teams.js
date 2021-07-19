@@ -4,7 +4,8 @@ export {
   index,
   create,
   show,
-  edit
+  edit,
+  update
 }
 
 function index(req, res) {
@@ -59,5 +60,23 @@ function edit(req, res) {
     .catch(err => {
       console.log(err)
       res.redirect('/teams')
+    })
+}
+
+function update(req, res) {
+    Team.findById(req.params.id)
+    .then(team => {
+      if (team.manager.equals(req.user.profile._id)) {
+        team.update(req.body, {new: true})
+        .then(()=> {
+          res.redirect(`/teams/${team._id}`)
+        })
+      } else {
+        throw new Error ('🚫 Not authorized 🚫')
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect(`/teams`)
     })
 }
