@@ -3,7 +3,8 @@ import { Player } from '../models/player.js'
 export {
   index,
   create,
-  show
+  show,
+  edit
 }
 
 function index(req, res) {
@@ -39,6 +40,20 @@ function show(req, res) {
       res.render('players/show', {
         player,
         title: "Player Details"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/players')
+    })
+}
+
+function edit(req, res) {
+    Player.findById(req.params.id)
+    .then(player => {
+      res.render('players/edit', {
+        player,
+        title: "Edit Player"
       })
     })
     .catch(err => {

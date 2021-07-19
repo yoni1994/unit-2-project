@@ -2,7 +2,12 @@
 <%- include('../partials/nav') %>
 
 <section>
-  <h1><%= team.name %></h1>
+    <h1><%= team.name %></h1>
+    <% if (team.owner.equals(user?.profile._id)) { %>
+        <p>
+            <a class="link" href="/teams/<%= team._id %>/edit">Edit this Team!</a>
+        </p>
+    <% } %>
 </section>
 
 <%- include('../partials/footer') %>

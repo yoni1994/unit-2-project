@@ -3,7 +3,8 @@ import { Team } from '../models/team.js'
 export {
   index,
   create,
-  show
+  show,
+  edit
 }
 
 function index(req, res) {
@@ -39,6 +40,20 @@ function show(req, res) {
       res.render('teams/show', {
         team,
         title: "Team Details"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/teams')
+    })
+}
+
+function edit(req, res) {
+    Team.findById(req.params.id)
+    .then(team => {
+      res.render('teams/edit', {
+        team,
+        title: "Edit Team"
       })
     })
     .catch(err => {

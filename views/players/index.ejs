@@ -5,9 +5,9 @@
     <h1>Players</h1>
 	<ul>
   <% players.forEach(player => { %>
-    <li>Player: <%= player.name %></li>
-    <li>Height: <%= player.height %></li>
-    <li>Position: <%= player.position %></li>
+    <li>
+        <a href="/players/<%= player._id %>"><%=player.name%></a> 
+    </li>
   <% }) %>
   </ul>
     <% if (user) { %>

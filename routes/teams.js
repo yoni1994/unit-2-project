@@ -11,4 +11,5 @@ const router = Router()
 
 router.get('/', teamsCtrl.index)
 router.get('/:id', teamsCtrl.show)
+router.get('/:id/edit', isLoggedIn, teamsCtrl.edit)
 router.post('/', isLoggedIn, teamsCtrl.create)
