@@ -2,14 +2,37 @@
 <%- include('../partials/nav') %>
 
 <section>
-  <!-- <h1>Tacos! 🌮🌮🌮</h1>
-  <h2>All the Tacos!</h2>
+    <h1>Players</h1>
 	<ul>
-  <% //tacos.forEach(taco => { %>
-    <li>🌮 <%= //taco.name %> is <%= //taco.tasty ? 'tasty' : 'not tasty' %></li>
-  <% //}) %>
-  </ul> -->
-  <h1>Players</h1>
+  <% players.forEach(player => { %>
+    <li>Player: <%= player.name %></li>
+    <li>Height: <%= player.height %></li>
+    <li>Position: <%= player.position %></li>
+  <% }) %>
+  </ul>
+    <% if (user) { %>
+      <h2>Add a Player</h2>
+      <form action="/players" method="POST">
+        <label>
+          Name: 
+          <input type="text" name="name" autocomplete="off">
+        </label>
+        <label>
+            Height: 
+          <input type="text" name="height" autocomplete="off">
+        </label>
+        <label>
+            Position: 
+            <select name="position">
+                <option value="PG">PG</option>
+                <option value="SG">SG</option>
+                <option value="SF">SF</option>
+                <option value="PF">PF</option>
+                <option value="C">C</option>
+            </select>
+        </label>
+        <button type="submit">Add Player</button>
+      </form>
+    <% } %>
 </section>
-
 <%- include('../partials/footer') %>

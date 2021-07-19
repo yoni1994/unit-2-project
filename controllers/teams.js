@@ -1,7 +1,8 @@
 import { Team } from '../models/team.js'
 
 export {
-  index
+  index,
+  create
 }
 
 function index(req, res) {
@@ -16,4 +17,16 @@ function index(req, res) {
       console.log(err)
       res.redirect("/teams")
     })
-  }
+}
+
+function create(req, res) {
+    req.body.manager = req.user.profile
+    Team.create(req.body)
+    .then(team => {
+      res.redirect('/teams')
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/teams')
+    })
+}

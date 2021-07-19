@@ -2,14 +2,22 @@
 <%- include('../partials/nav') %>
 
 <section>
-  <!-- <h1>Tacos! 🌮🌮🌮</h1>
-  <h2>All the Tacos!</h2>
-	<ul>
-    <% //tacos.forEach(taco => { %>
-    <li>🌮 <%= //taco.name %> is <%= //taco.tasty ? 'tasty' : 'not tasty' %></li>
-    <% //}) %>
-    </ul> -->
   <h1>Teams</h1>
+	<ul>
+  <% teams.forEach(team => { %>
+    <li>Team: <%= team.name %></li>
+  <% }) %>
+  </ul>
+  <% if (user) { %>
+    <h2>Add a Team!</h2>
+    <form action="/teams" method="POST">
+      <label>
+        Name: 
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <button type="submit">Add Team</button>
+    </form>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>

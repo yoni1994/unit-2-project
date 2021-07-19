@@ -1,7 +1,8 @@
 import { Player } from '../models/player.js'
 
 export {
-  index
+  index,
+  create
 }
 
 function index(req, res) {
@@ -15,5 +16,17 @@ function index(req, res) {
     .catch(err => {
       console.log(err)
       res.redirect("/players")
+    })
+}
+
+function create(req, res) {
+    req.body.profile = req.user.profile
+    Player.create(req.body)
+    .then(player => {
+      res.redirect('/players')
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/players')
     })
 }
