@@ -9,6 +9,13 @@
         <p>
             <a class="link" href="/players/<%= player._id %>/edit">Edit Player Details</a>
         </p>
+        <p> 
+            <form action="/players/<%= player._id %>?_method=DELETE" method="post">
+                <button type="submit">
+                    Delete this player
+                </button>
+            </form>
+        </p>
     <% } %>
 </section>
 

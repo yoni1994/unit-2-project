@@ -5,7 +5,8 @@ export {
   create,
   show,
   edit,
-  update
+  update,
+  deleteTeam as delete
 }
 
 function index(req, res) {
@@ -78,5 +79,23 @@ function update(req, res) {
     .catch(err => {
       console.log(err)
       res.redirect(`/teams`)
+    })
+}
+
+function deleteTeam(req, res) {
+    Team.findById(req.params.id)
+    .then(team => {
+      if (team.manager.equals(req.user.profile._id)) {
+        team.delete()
+        .then(() => {
+          res.redirect('/teams')
+        })
+      } else {
+        throw new Error ('🚫 Not authorized 🚫')
+      }   
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/teams')
     })
 }

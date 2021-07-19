@@ -5,7 +5,14 @@
     <h1><%= team.name %></h1>
     <% if (team.manager.equals(user?.profile._id)) { %>
         <p>
-            <a class="link" href="/teams/<%= team._id %>/edit">Edit this Team!</a>
+            <a class="link" href="/teams/<%= team._id %>/edit">Edit this Team</a>
+        </p>
+        <p> 
+        <form action="/teams/<%= team._id %>?_method=DELETE" method="post">
+            <button type="submit">
+                Delete this team
+            </button>
+        </form>
         </p>
     <% } %>
 </section>

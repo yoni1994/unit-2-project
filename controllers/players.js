@@ -5,7 +5,8 @@ export {
   create,
   show,
   edit,
-  update
+  update,
+  deletePlayer as delete
 }
 
 function index(req, res) {
@@ -79,5 +80,23 @@ function update(req, res) {
     .catch(err => {
       console.log(err)
       res.redirect(`/players`)
+    })
+}
+
+function deletePlayer(req, res) {
+    Player.findById(req.params.id)
+    .then(player => {
+      if (player.profile.equals(req.user.profile._id)) {
+        player.delete()
+        .then(() => {
+          res.redirect('/players')
+        })
+      } else {
+        throw new Error ('🚫 Not authorized 🚫')
+      }   
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/players')
     })
 }
