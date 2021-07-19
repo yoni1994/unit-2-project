@@ -10,4 +10,5 @@ export {
 const router = Router()
 
 router.get('/', teamsCtrl.index)
+router.get('/:id', teamsCtrl.show)
 router.post('/', isLoggedIn, teamsCtrl.create)

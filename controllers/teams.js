@@ -2,7 +2,8 @@ import { Team } from '../models/team.js'
 
 export {
   index,
-  create
+  create,
+  show
 }
 
 function index(req, res) {
@@ -24,6 +25,21 @@ function create(req, res) {
     Team.create(req.body)
     .then(team => {
       res.redirect('/teams')
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/teams')
+    })
+}
+
+function show(req, res) {
+    Team.findById(req.params.id)
+    .populate("manager")
+    .then(team => {
+      res.render('teams/show', {
+        team,
+        title: "Team Details"
+      })
     })
     .catch(err => {
       console.log(err)

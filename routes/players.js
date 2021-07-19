@@ -10,5 +10,5 @@ const router = Router()
 
 
 router.get('/', playersCtrl.index)
-
+router.get('/:id', playersCtrl.show)
 router.post('/', isLoggedIn, playersCtrl.create)

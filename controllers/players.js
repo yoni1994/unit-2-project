@@ -2,7 +2,8 @@ import { Player } from '../models/player.js'
 
 export {
   index,
-  create
+  create,
+  show
 }
 
 function index(req, res) {
@@ -24,6 +25,21 @@ function create(req, res) {
     Player.create(req.body)
     .then(player => {
       res.redirect('/players')
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/players')
+    })
+}
+
+function show(req, res) {
+    Player.findById(req.params.id)
+    .populate("profile")
+    .then(player => {
+      res.render('players/show', {
+        player,
+        title: "Player Details"
+      })
     })
     .catch(err => {
       console.log(err)

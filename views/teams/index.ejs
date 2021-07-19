@@ -6,6 +6,9 @@
 	<ul>
   <% teams.forEach(team => { %>
     <li>Team: <%= team.name %></li>
+    <li>
+        <a href="/teams/<%= team._id %>">Details</a> 
+    </li>
   <% }) %>
   </ul>
   <% if (user) { %>
