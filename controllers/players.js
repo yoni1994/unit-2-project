@@ -23,6 +23,7 @@ function index(req, res) {
     })
 }
 
+
 function create(req, res) {
     req.body.profile = req.user.profile
     Player.create(req.body)
