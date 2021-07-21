@@ -3,15 +3,25 @@
 
 <section>
     <h1><%= team.name %></h1>
-    <% if (team.manager.equals(user?.profile._id)) { %>
-        <h2>Players: </h2>
-        <ul>
-            <% team.players.forEach(player => { %>
-              <li>
-                <%= player.name %>
-              </li>
+    <table id="teamPlayers">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Height</th>
+            <th>Position</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% team.players.forEach(player => { %>
+            <tr>
+            <td><%= player.name %></td>
+            <td><%= player.height %></td>
+            <td><%= player.position %></td>
+            </tr>
             <% }) %>
-        </ul>
+        </tbody>
+    </table>
+    <% if (team.manager.equals(user?.profile._id)) { %>
         <form action="/teams/<%= team._id %>" method="POST">
             <select name="playerId">
                 <% players.forEach(player => { %>
