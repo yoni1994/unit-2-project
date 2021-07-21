@@ -15,10 +15,10 @@
         <tbody>
         <% players.forEach(player => { %>
             <tr>
-            <td><%= player.name %></td>
+            <td><a href="/players/<%= player._id %>"><%=player.name%></a> </td>
             <td><%= player.height %></td>
             <td><%= player.position %></td>
-            <td><%= player.teamPlayingFor %></td>
+            <td><%= player.teamPlayingFor?.name %></td>
             </tr>
             <% }) %>
         </tbody>

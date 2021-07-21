@@ -111,9 +111,14 @@ function deleteTeam(req, res) {
 function addToTeam(req, res) {
   Team.findById(req.params.id)
   .then(team => {
-    team.players.push(req.body.playerId)
-    team.save(function(err) {
-      res.redirect(`/teams/${team._id}`)
+    Player.findById(req.body.playerId) 
+    .then(player => {
+      player.teamPlayingFor = team._id
+      player.save()
+      team.players.push(req.body.playerId)
+      team.save(function(err) {
+        res.redirect(`/teams/${team._id}`)
+      })
     })
   })
 }

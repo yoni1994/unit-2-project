@@ -1,4 +1,6 @@
 import { Player } from '../models/player.js'
+import { Team } from '../models/team.js'
+
 
 export {
   index,
@@ -11,6 +13,7 @@ export {
 
 function index(req, res) {
     Player.find({})
+    .populate('teamPlayingFor')
     .then(players => {
       res.render('players/index', {
         players,
@@ -26,6 +29,7 @@ function index(req, res) {
 
 function create(req, res) {
     req.body.profile = req.user.profile
+    req.body.teamPlayingFor = "60f5bc1bb35b475b91432682"
     Player.create(req.body)
     .then(player => {
       res.redirect('/players')
@@ -39,6 +43,7 @@ function create(req, res) {
 function show(req, res) {
     Player.findById(req.params.id)
     .populate("profile")
+    .populate('teamPlayingFor')
     .then(player => {
       res.render('players/show', {
         player,
