@@ -2,14 +2,27 @@
 <%- include('../partials/nav') %>
 
 <section>
-    <h1>Players</h1>
-	<ul>
-  <% players.forEach(player => { %>
-    <li>
-        <a href="/players/<%= player._id %>"><%=player.name%></a> 
-    </li>
-  <% }) %>
-  </ul>
+  <h1>Players</h1>
+  <table id="players">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Height</th>
+            <th>Position</th>
+            <th>Team</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% players.forEach(player => { %>
+            <tr>
+            <td><%= player.name %></td>
+            <td><%= player.height %></td>
+            <td><%= player.position %></td>
+            <td><%= player.teamPlayingFor %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
     <% if (user) { %>
       <h2>Add a Player</h2>
       <form action="/players" method="POST">
