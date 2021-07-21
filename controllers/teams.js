@@ -1,4 +1,6 @@
 import { Team } from '../models/team.js'
+import { Player } from '../models/player.js'
+
 
 export {
   index,
@@ -6,7 +8,8 @@ export {
   show,
   edit,
   update,
-  deleteTeam as delete
+  deleteTeam as delete,
+  addToTeam
 }
 
 function index(req, res) {
@@ -38,17 +41,22 @@ function create(req, res) {
 function show(req, res) {
     Team.findById(req.params.id)
     .populate("manager")
-    .then(team => {
+    .populate('players')
+    .then(function(team) {
+      Player.find({_id: {$nin: team.players}}, function(err, players) {
       res.render('teams/show', {
         team,
+        players,
         title: "Team Details"
       })
     })
+  })
     .catch(err => {
       console.log(err)
       res.redirect('/teams')
     })
-}
+  }
+
 
 function edit(req, res) {
     Team.findById(req.params.id)
@@ -98,4 +106,14 @@ function deleteTeam(req, res) {
       console.log(err)
       res.redirect('/teams')
     })
+}
+
+function addToTeam(req, res) {
+  Team.findById(req.params.id)
+  .then(team => {
+    team.players.push(req.body.playerId)
+    team.save(function(err) {
+      res.redirect(`/teams/${team._id}`)
+    })
+  })
 }

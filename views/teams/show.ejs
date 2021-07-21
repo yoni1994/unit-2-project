@@ -4,6 +4,22 @@
 <section>
     <h1><%= team.name %></h1>
     <% if (team.manager.equals(user?.profile._id)) { %>
+        <h2>Players: </h2>
+        <ul>
+            <% team.players.forEach(player => { %>
+              <li>
+                <%= player.name %>
+              </li>
+            <% }) %>
+        </ul>
+        <form action="/teams/<%= team._id %>" method="POST">
+            <select name="playerId">
+                <% players.forEach(player => { %>
+                <option name='' value="<%= player._id %>"><%= player.name %></option>
+                <% }) %>
+            </select>
+            <button type="submit">Add to Team</button>
+        </form>
         <p>
             <a class="link" href="/teams/<%= team._id %>/edit">Edit this Team</a>
         </p>
