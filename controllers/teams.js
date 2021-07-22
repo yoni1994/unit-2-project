@@ -9,7 +9,8 @@ export {
   edit,
   update,
   deleteTeam as delete,
-  addToTeam
+  addToTeam,
+  removeFromTeam
 }
 
 function index(req, res) {
@@ -116,6 +117,22 @@ function addToTeam(req, res) {
       player.teamPlayingFor = team._id
       player.save()
       team.players.push(req.body.playerId)
+      team.save(function(err) {
+        res.redirect(`/teams/${team._id}`)
+      })
+    })
+  })
+}
+
+
+function removeFromTeam(req, res) {
+  Team.findById(req.params.id)
+  .then(team => {
+    Player.findById(req.body.playerId) 
+    .then(player => {
+      player.teamPlayingFor = "60f5bc1bb35b475b91432682"
+      player.save()
+      team.players.pull(req.body.playerId)
       team.save(function(err) {
         res.redirect(`/teams/${team._id}`)
       })

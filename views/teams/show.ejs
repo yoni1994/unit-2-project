@@ -22,13 +22,23 @@
         </tbody>
     </table>
     <% if (team.manager.equals(user?.profile._id)) { %>
+        <h2>Add Player</h2>
         <form action="/teams/<%= team._id %>" method="POST">
             <select name="playerId">
                 <% players.forEach(player => { %>
-                <option name='' value="<%= player._id %>"><%= player.name %></option>
+                <option value="<%= player._id %>"><%= player.name %></option>
                 <% }) %>
             </select>
             <button type="submit">Add to Team</button>
+        </form>
+        <h2>Remove Player</h2>
+        <form action="/teams/<%= team._id %>" method="POST">
+            <select name="playerId">
+                <% team.players.forEach(player => { %>
+                <option value="<%= player._id %>"><%= player.name %></option>
+                <% }) %>
+            </select>
+            <button type="submit">Remove from Team</button>
         </form>
         <p>
             <a class="link" href="/teams/<%= team._id %>/edit">Edit this Team</a>

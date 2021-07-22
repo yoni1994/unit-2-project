@@ -74,7 +74,6 @@ function update(req, res) {
     Player.findById(req.params.id)
     .then(player => {
       if (player.profile.equals(req.user.profile._id)) {
-        req.body.tasty = !!req.body.tasty
         player.update(req.body, {new: true})
         .then(()=> {
           res.redirect(`/players/${player._id}`)
