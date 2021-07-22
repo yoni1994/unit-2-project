@@ -1,4 +1,7 @@
 import { Profile } from '../models/profile.js'
+import { Player } from '../models/player.js'
+import { Team } from '../models/team.js'
+
 
 export {
   index,
@@ -25,11 +28,21 @@ function show(req, res) {
       Profile.findById(req.user.profile._id)
       .then(self => {
         const isSelf = self._id.equals(profile._id)
-        res.render("profiles/show", {
-          title: `${profile.name}'s profile`,
-          profile,
-          self,
-          isSelf,
+        Team.find({})
+        .populate('manager')
+        .then(teams => {
+            Player.find({})
+            .populate('profile')
+            .then(players => {
+                res.render("profiles/show", {
+                title: `${profile.name}'s profile`,
+                teams,
+                players,
+                profile,
+                self,
+                isSelf,
+                })
+            })
         })
       })
     })

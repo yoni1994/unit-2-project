@@ -12,6 +12,15 @@
     </div>
   <% } %>
   <h1>It's <%= isSelf ? "You" : profile.name %>!</h1>
+  <h2>Teams owned: </h2>
+  <% console.log('profile id ' + profile._id) %>
+  <% teams.forEach(team => { %>
+    <% console.log('team manager ' + team.manager._id) %>
+    <% if (team.manager._id === profile._id) { %>
+        <% console.log('success') %>
+        <h2>yes</h2>
+    <% } %>
+  <% }) %>
 </main>
 
 <%- include('../partials/footer') %>
