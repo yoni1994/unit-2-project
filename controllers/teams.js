@@ -110,6 +110,7 @@ function deleteTeam(req, res) {
 }
 
 function addToTeam(req, res) {
+  console.log('test add')
   Team.findById(req.params.id)
   .then(team => {
     Player.findById(req.body.playerId) 
@@ -126,13 +127,18 @@ function addToTeam(req, res) {
 
 
 function removeFromTeam(req, res) {
+  console.log('test remove')
   Team.findById(req.params.id)
   .then(team => {
-    Player.findById(req.body.playerId) 
+    Player.findById(req.body.teamPlayerId) 
     .then(player => {
       player.teamPlayingFor = "60f5bc1bb35b475b91432682"
       player.save()
-      team.players.pull(req.body.playerId)
+      let i = team.players.indexOf(req.body.teamPlayerId)
+      // let playerLength = req.body.teamPlayerId.toString()
+      // console.log(playerLength)
+      team.players.splice(i, 1)
+      // team.players.pop(req.body.teamPlayerId)
       team.save(function(err) {
         res.redirect(`/teams/${team._id}`)
       })

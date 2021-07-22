@@ -32,8 +32,8 @@
             <button type="submit">Add to Team</button>
         </form>
         <h2>Remove Player</h2>
-        <form action="/teams/<%= team._id %>" method="POST">
-            <select name="playerId">
+        <form action="/teams/<%= team._id %>/remove" method="POST">
+            <select name="teamPlayerId">
                 <% team.players.forEach(player => { %>
                 <option value="<%= player._id %>"><%= player.name %></option>
                 <% }) %>
