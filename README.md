@@ -9,7 +9,17 @@ Welcome to Yoni's Rec League. Whether you want to own and manage a team, play so
 
   
 ## Screenshots:
-
+![logged-out-intro](./public/images/screenshots/logged-out-intro.png)
+![logged-in-intro](public/images/screenshots/logged-in-intro.png)
+![team-index](public/images/screenshots/team-index.png)
+![team-show](public/images/screenshots/team-show.png)
+![team-edit](public/images/screenshots/team-edit.png)
+![player-index](public/images/screenshots/player-index.png)
+![player-show](public/images/screenshots/player-show.png)
+![player-edit](public/images/screenshots/player-edit.png)
+![standings](public/images/screenshots/standings.png)
+![stats](public/images/screenshots/stats.png)
+![profile-show](public/images/screenshots/profile-show.png)
 
   
 ## Technologies used: 
