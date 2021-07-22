@@ -1,6 +1,6 @@
 # unit-2-project
 
-<Yoni's Rec League> 
+<Yoni's-Rec-League> 
 Welcome to Yoni's Rec League. Whther you want to own and manage a team, play some basketball, or both, this is the perfect place for you. We have an ever-growing community and will be happy to have more. Make sure to sign up before the season starts!
   
 
