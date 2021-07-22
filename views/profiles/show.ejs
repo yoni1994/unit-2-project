@@ -12,8 +12,8 @@
     </div>
   <% } %>
   <h1>It's <%= isSelf ? "You" : profile.name %>!</h1>
+  
 
-  <h2>Teams owned: </h2>
   <% let teamsCreated = [] %>
   <% teams.forEach(team => { %>
     <% if (team.manager._id.equals(profile._id)) { %>
@@ -22,6 +22,8 @@
       <% } %>
     <% } %>
   <% }) %>
+  <% if (teamsCreated.length > 0) { %>
+  <h2>Teams owned: </h2>
   <% teamsCreated.forEach(teamCreated => {%>
     <% console.log(teamsCreated.indexOf(teamCreated)) %>
     <% console.log(teamsCreated.length - 1) %>
@@ -32,14 +34,19 @@
       <%= teamCreated.name %>
     <% } %>
   <% }) %>
+  <% } else { %>
+  <h2><%= profile.name %> doesn't own any teams</h2>
+  <% } %>
 
-  <h2>Players created: </h2>
   <% let playersCreated = [] %>
   <% players.forEach(player => { %>
     <% if (player.profile._id.equals(profile._id)) { %>
       <% playersCreated.push(player) %>
     <% } %>
   <% }) %>
+  <% if (playersCreated.length > 0) { %>
+    <h2>Players created: </h2>
+
   <% playersCreated.forEach(playerCreated => {%>
     <% console.log(playersCreated.indexOf(playerCreated)) %>
     <% console.log(playersCreated.length - 1) %>
@@ -50,6 +57,10 @@
       <%= playerCreated.name %>
     <% } %>
   <% }) %>
+  <% } else { %>
+    <h2><%= profile.name %> didn't create any players</h2>
+    <% } %>
+  
 </main>
 
 <%- include('../partials/footer') %>
