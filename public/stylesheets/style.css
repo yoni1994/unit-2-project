@@ -131,14 +131,14 @@ input {
 
 @media only screen and (max-width: 850px) {
   nav > a {
-    margin: auto 2rem;
+    margin: 2rem auto;
     font-size: 1.5rem;
   }
 }
 
 @media only screen and (max-width: 500px) {
   nav > a {
-    margin: auto 2rem;
+    margin: 2rem auto;
     font-size: 1rem;
   }
 }
