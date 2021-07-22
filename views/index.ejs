@@ -2,20 +2,18 @@
 <%- include('./partials/nav') %>
 <% if (!user) {%>
 <div class="intro">
-  <h1>Hello and welcome to Yoni's Rec League</h1>
-  <h2>If you want to join the league as a manager or a player, please sign in above</h2>
+  <h1>Hello and welcome to Y🏀ni's Rec League</h1>
+  <h2>The season is underway, but we're always looking for new players and managers</h2>
+  <h2>it's never too late to join</h2>
+  <h2>sign in above to get started</h2>
+
 </div>
 <% } else { %>
 <main class="intro">
-  <h1>hello, <%=user.profile.name%></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img 
-        src="<%= user.profile.avatar %>" 
-        alt="<%= user.profile.name %> avatar"
-      >
-    </div>
-  <% } %>
+  <h1>Hello <%=user.profile.name%></h1>
+  <h2>Welcome Back!</h2>
+  <h3>Use the links above to Explore the site</h3>
+  <h3>You can make your own teams or players, update existing ones, or just see what everyone else is doing!</h3>
 </main>
 <% } %>
 

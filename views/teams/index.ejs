@@ -2,7 +2,9 @@
 <%- include('../partials/nav') %>
 
 <section class="team-section">
+<main>
   <h1>Teams</h1>
+  <div id="teams-list">
 	<ul>
   <% teams.forEach(team => { %>
     <% if (team.name != 'FA') { %>
@@ -12,7 +14,7 @@
     <% } %>
   <% }) %>
   </ul>
-<main>
+  </div>
   <% if (user) { %>
     <h2>Add a Team!</h2>
     <form action="/teams" method="POST">
