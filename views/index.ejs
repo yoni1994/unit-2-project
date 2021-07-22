@@ -1,8 +1,13 @@
 <%- include('./partials/html-head') %>
 <%- include('./partials/nav') %>
-
-<main>
-  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
+<% if (!user) {%>
+<div class="intro">
+  <h1>Hello and welcome to Yoni's Rec League</h1>
+  <h2>If you want to join the league as a manager or a player, please sign in above</h2>
+</div>
+<% } else { %>
+<main class="intro">
+  <h1>hello, <%=user.profile.name%></h1>
   <% if (user?.profile.avatar) { %>
     <div>
       <img 
@@ -12,5 +17,6 @@
     </div>
   <% } %>
 </main>
+<% } %>
 
 <%- include('./partials/footer') %>

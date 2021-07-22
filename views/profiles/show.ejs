@@ -12,13 +12,42 @@
     </div>
   <% } %>
   <h1>It's <%= isSelf ? "You" : profile.name %>!</h1>
+
   <h2>Teams owned: </h2>
-  <% console.log('profile id ' + profile._id) %>
+  <% let teamsCreated = [] %>
   <% teams.forEach(team => { %>
-    <% console.log('team manager ' + team.manager._id) %>
-    <% if (team.manager._id === profile._id) { %>
-        <% console.log('success') %>
-        <h2>yes</h2>
+    <% if (team.manager._id.equals(profile._id)) { %>
+      <% if (team.name != 'FA') { %>
+        <% teamsCreated.push(team) %>
+      <% } %>
+    <% } %>
+  <% }) %>
+  <% teamsCreated.forEach(teamCreated => {%>
+    <% console.log(teamsCreated.indexOf(teamCreated)) %>
+    <% console.log(teamsCreated.length - 1) %>
+    <% if (teamsCreated.indexOf(teamCreated) != teamsCreated.length - 1) { %>
+      <% console.log('test') %>
+      <%= teamCreated.name %>,
+    <% } else { %>
+      <%= teamCreated.name %>
+    <% } %>
+  <% }) %>
+
+  <h2>Players created: </h2>
+  <% let playersCreated = [] %>
+  <% players.forEach(player => { %>
+    <% if (player.profile._id.equals(profile._id)) { %>
+      <% playersCreated.push(player) %>
+    <% } %>
+  <% }) %>
+  <% playersCreated.forEach(playerCreated => {%>
+    <% console.log(playersCreated.indexOf(playerCreated)) %>
+    <% console.log(playersCreated.length - 1) %>
+    <% if (playersCreated.indexOf(playerCreated) != playersCreated.length - 1) { %>
+      <% console.log('test') %>
+      <%= playerCreated.name %>,
+    <% } else { %>
+      <%= playerCreated.name %>
     <% } %>
   <% }) %>
 </main>

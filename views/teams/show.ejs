@@ -3,6 +3,8 @@
 
 <section>
     <h1><%= team.name %></h1>
+    <h2>Players:</h2>
+    <% if (team.players.length >= 1) { %>
     <table id="teamPlayers">
     <thead>
         <tr>
@@ -21,6 +23,9 @@
             <% }) %>
         </tbody>
     </table>
+    <% } else { %>
+        <h3>This team has no players yet</h3>
+    <% } %>
     <% if (team.manager.equals(user?.profile._id)) { %>
         <h2>Add Player</h2>
         <form action="/teams/<%= team._id %>" method="POST">

@@ -1,7 +1,7 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<section>
+<section class="team-section">
   <h1>Teams</h1>
 	<ul>
   <% teams.forEach(team => { %>
@@ -12,16 +12,18 @@
     <% } %>
   <% }) %>
   </ul>
+<main>
   <% if (user) { %>
     <h2>Add a Team!</h2>
     <form action="/teams" method="POST">
-      <label>
+      <label id="add-team-input">
         Name: 
-        <input type="text" name="name" autocomplete="off">
+        <input id="add-team-input" type="text" name="name" autocomplete="off">
       </label>
       <button type="submit">Add Team</button>
     </form>
   <% } %>
 </section>
+</main>
 
 <%- include('../partials/footer') %>
