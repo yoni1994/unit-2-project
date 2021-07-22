@@ -5,9 +5,11 @@
   <h1>Teams</h1>
 	<ul>
   <% teams.forEach(team => { %>
-    <li>
+    <% if (team.name != 'FA') { %>
+      <li>
         <a href="/teams/<%= team._id %>"><%= team.name %></a> 
-    </li>
+      </li>
+    <% } %>
   <% }) %>
   </ul>
   <% if (user) { %>

@@ -1,0 +1,38 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Stats</h1>
+  <table id="Stats">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Points</th>
+            <th>Rebound</th>
+            <th>Assists</th>
+            <th>Blocks</th>
+            <th>Steals</th>
+            <th>Field Goal%</th>
+            <th>3 Point%</th>
+            <th>Free Throw%</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% players.forEach(player => { %>
+                <tr>
+                <% console.log(players) %>
+                <td><a href="/players/<%= player._id %>"><%=player.name%></a> </td>
+                <td><%= (Math.floor(Math.random() * 200) + 100) / 10 %></td>
+                <td><%= (Math.floor(Math.random() * 130) + 20) / 10 %></td>
+                <td><%= (Math.floor(Math.random() * 130) + 10) / 10 %></td>
+                <td><%= (Math.floor(Math.random() * 30)) / 10 %></td>
+                <td><%= (Math.floor(Math.random() * 30)) / 10 %></td>
+                <td><%= (Math.floor(Math.random() * 200) + 350) / 10 %>%</td>
+                <td><%= (Math.floor(Math.random() * 120) + 300) / 10 %>%</td>
+                <td><%= (Math.floor(Math.random() * 250) + 700) / 10 %>%</td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
+<%- include('../partials/footer') %>

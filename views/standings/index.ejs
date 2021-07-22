@@ -1,0 +1,31 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Standings</h1>
+  <table id="Standings">
+    <thead>
+        <tr>
+            <th>Team</th>
+            <th>Win</th>
+            <th>Loss</th>
+            <th>Win%</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% teams.forEach(team => { %>
+                <% if (team.name != 'FA') { %>
+                    <tr>
+                    <% let wins = Math.floor(Math.random() * 30)%>
+                    <% let losses = Math.floor(Math.random() * 30)%>
+                    <td><a href="/teams/<%= team._id %>"><%=team.name%></a> </td>
+                    <td><%= wins %></td>
+                    <td><%= losses %></td>
+                    <td><%= (wins/(wins + losses)).toFixed(3) %></td>
+                    </tr>
+                <% } %>
+            <% }) %>
+        </tbody>
+    </table>
+</section>
+<%- include('../partials/footer') %>

@@ -15,6 +15,7 @@
         <tbody>
         <% players.forEach(player => { %>
             <tr>
+            <% console.log(players) %>
             <td><a href="/players/<%= player._id %>"><%=player.name%></a> </td>
             <td><%= player.height %></td>
             <td><%= player.position %></td>
